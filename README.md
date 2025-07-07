@@ -41,8 +41,8 @@ npm build
       position: fixed;
       bottom: 20px;
       right: 20px;
-      width: 4160px;
-      height: 5880px;
+      width: 416px;
+      height: 588px;
       border: none;
       z-index: 1000;
     "
