@@ -40,7 +40,7 @@ const ChatBox = ({
         });
     }, [messages])
     return (
-        <div className={cn(`fixed bottom-22 right-4 w-[400px] h-[500px] border border-black overflow-hidden rounded-lg transition-all duration-300 bg-white z-10`, isShowMessage ? 'translate-x-0' : 'translate-x-[416px]')}>
+        <div style={{ pointerEvents: 'auto' }} className={cn(`fixed bottom-22 right-4 w-[400px] h-[500px] border border-black overflow-hidden rounded-lg transition-all duration-300 bg-white z-10`, isShowMessage ? 'translate-x-0' : 'translate-x-[416px]')}>
             <div className="size-full flex flex-col">
                 <div className="w-full h-20 flex items-center justify-between px-6">
                     <div className="size-8 rounded-full border relative">

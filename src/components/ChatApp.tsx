@@ -92,6 +92,7 @@ Bạn là một trợ lý ảo y khoa của **Bệnh viện Đa khoa Quốc tế
                 className={cn(
                     `fixed bottom-4 right-4 transition-all duration-500 bg-white/80 cursor-pointer size-16 rounded-full overflow-hidden border border-black z-10`
                 )}
+                style={{ pointerEvents: 'auto' }}
             >
                 <div className="size-full flex items-center justify-center relative group">
                     <MessageCircleMore
