@@ -1,0 +1,210 @@
+[
+  {
+    "code": "D01",
+    "name": "Viêm họng cấp",
+    "symptoms": [
+      "ho",
+      "đau rát họng",
+      "sốt nhẹ"
+    ],
+    "diagnosis": "Khám lâm sàng, test nhanh COVID-19 nếu cần",
+    "treatment_plan": "Nghỉ ngơi, súc họng nước muối ấm, uống nhiều nước",
+    "prescription": [
+      {
+        "drugName": "Paracetamol 500mg",
+        "dosage": "2 viên x 3 lần/ngày",
+        "duration": "5 ngày"
+      },
+      {
+        "drugName": "Amoxicillin 500mg",
+        "dosage": "1 viên x 3 lần/ngày",
+        "duration": "7 ngày"
+      },
+      {
+        "drugName": "Siro ho thảo dược",
+        "dosage": "10ml x 3 lần/ngày",
+        "duration": "5 ngày"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "code": "D02",
+    "name": "Cảm cúm thông thường",
+    "symptoms": [
+      "sốt cao",
+      "đau đầu",
+      "mệt mỏi",
+      "nghẹt mũi"
+    ],
+    "diagnosis": "Khám lâm sàng, có thể cần test virus cúm",
+    "treatment_plan": "Nghỉ ngơi, bù nước, ăn dễ tiêu",
+    "prescription": [
+      {
+        "drugName": "Ibuprofen 400mg",
+        "dosage": "1 viên x 3 lần/ngày",
+        "duration": "5 ngày"
+      },
+      {
+        "drugName": "Thuốc thông mũi xịt",
+        "dosage": "2 lần/ngày",
+        "duration": "7 ngày"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "code": "ENT01",
+    "name": "Viêm xoang cấp",
+    "symptoms": [
+      "đau vùng trán",
+      "nghẹt mũi",
+      "chảy mũi xanh",
+      "đau nhức mặt"
+    ],
+    "diagnosis": "Khám lâm sàng, chụp CT nếu tái phát",
+    "treatment_plan": "Xông mũi, nhỏ mũi nước muối sinh lý",
+    "prescription": [
+      {
+        "drugName": "Amoxicillin 500mg",
+        "dosage": "1 viên x 3 lần/ngày",
+        "duration": "10 ngày"
+      },
+      {
+        "drugName": "Thuốc nhỏ mũi oxymetazoline",
+        "dosage": "2 lần/ngày",
+        "duration": "7 ngày"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "code": "ENT02",
+    "name": "Viêm tai giữa cấp",
+    "symptoms": [
+      "đau tai",
+      "sốt",
+      "chảy mủ tai"
+    ],
+    "diagnosis": "Khám tai trong, soi tai, test phản ứng viêm",
+    "treatment_plan": "Nghỉ ngơi, giữ tai khô",
+    "prescription": [
+      {
+        "drugName": "Amoxicillin 500mg",
+        "dosage": "1 viên x 3 lần/ngày",
+        "duration": "7 ngày"
+      },
+      {
+        "drugName": "Thuốc nhỏ tai kháng sinh",
+        "dosage": "5 giọt x 3 lần/ngày",
+        "duration": "7 ngày"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "code": "ENT03",
+    "name": "Viêm amidan",
+    "symptoms": [
+      "đau họng",
+      "sưng amidan",
+      "khó nuốt",
+      "sốt"
+    ],
+    "diagnosis": "Khám họng, test nhanh vi khuẩn",
+    "treatment_plan": "Súc miệng nước muối, nghỉ ngơi",
+    "prescription": [
+      {
+        "drugName": "Penicillin VK 500mg",
+        "dosage": "1 viên x 4 lần/ngày",
+        "duration": "10 ngày"
+      },
+      {
+        "drugName": "Paracetamol 500mg",
+        "dosage": "2 viên x 3 lần/ngày",
+        "duration": "5 ngày"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "code": "ENT04",
+    "name": "Viêm thanh quản",
+    "symptoms": [
+      "khàn tiếng",
+      "ho khan",
+      "đau họng nhỏ"
+    ],
+    "diagnosis": "Khám thanh quản, nội soi nếu cần",
+    "treatment_plan": "Nghỉ ngơi giọng, uống nhiều nước",
+    "prescription": [
+      {
+        "drugName": "Thuốc giảm ho dạng siro",
+        "dosage": "10ml x 3 lần/ngày",
+        "duration": "7 ngày"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "code": "ENT05",
+    "name": "Viêm mũi dị ứng",
+    "symptoms": [
+      "nghẹt mũi",
+      "hắt hơi",
+      "chảy nước mũi trong"
+    ],
+    "diagnosis": "Test da dị ứng hoặc IgE huyết thanh",
+    "treatment_plan": "Tránh tác nhân dị ứng, rửa mũi nước muối",
+    "prescription": [
+      {
+        "drugName": "Loratadine 10mg",
+        "dosage": "1 viên/ngày",
+        "duration": "14 ngày"
+      },
+      {
+        "drugName": "Thuốc nhỏ mũi corticosteroid",
+        "dosage": "2 lần/ngày",
+        "duration": "14 ngày"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "code": "ENT06",
+    "name": "Viêm VA",
+    "symptoms": [
+      "ngáy to",
+      "nghẹt mũi",
+      "giấc ngủ không ngon"
+    ],
+    "diagnosis": "Khám họng, nội soi VA",
+    "treatment_plan": "Theo dõi, có thể phẫu thuật nếu nặng",
+    "prescription": [
+      {
+        "drugName": "Antihistamine",
+        "dosage": "theo chỉ định",
+        "duration": "7 ngày"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "code": "ENT07",
+    "name": "Ù tai tạm thời",
+    "symptoms": [
+      "rít trong tai",
+      "mất thính lực nhẹ"
+    ],
+    "diagnosis": "Đo thính lực, loại trừ nguyên nhân stress",
+    "treatment_plan": "Tránh ồn, thư giãn",
+    "prescription": [
+      {
+        "drugName": "Vitamin B12",
+        "dosage": "1 viên/ngày",
+        "duration": "30 ngày"
+      }
+    ],
+    "notes": ""
+  }
+]
