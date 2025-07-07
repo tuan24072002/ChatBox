@@ -5,7 +5,7 @@
 git clone https://github.com/tuan24072002/ChatBox.git
 ```
 
-## Install library
+## Install libraries
 
 ```bash
 # npm
@@ -30,4 +30,23 @@ Build the application for production:
 # npm
 npm build
 
+```
+
+## Embed in another website
+
+```js
+<iframe
+  src="https://example.app" // Your deployed URL
+  style="
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 4160px;
+      height: 5880px;
+      border: none;
+      z-index: 1000;
+    "
+  title="ChatBox"
+  sandbox="allow-scripts allow-same-origin"
+></iframe>
 ```
