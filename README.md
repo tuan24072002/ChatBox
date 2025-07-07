@@ -18,7 +18,7 @@ Start the development server on `http://localhost:5173`:
 
 ```bash
 # npm
-npm dev
+npm run dev
 ```
 
 ## Production
