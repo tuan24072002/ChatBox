@@ -81,13 +81,13 @@ const ChatBox = ({
                             Thông tin của bạn được ẩn và tin nhắn trò chuyện chỉ lưu trên trình duyệt web.</p>
                     }
                     {messages.map((msg, index: number) => {
-                        if (msg.senderId === userId) {
+                        if (msg.senderId === userId && msg.text !== "") {
                             return (
                                 <div key={index} className="p-2 flex items-end gap-2 justify-start">
                                     <div title='User' className='size-10 bg-black text-white rounded-full border flex items-center justify-center cursor-pointer'>
                                         <User />
                                     </div>
-                                    <div className='h-full w-full max-w-2/3 flex flex-col items-start'>
+                                    <div className='h-full w-full max-w-2/3 flex flex-col items-start gap-1'>
                                         <div className='h-full max-w-full w-fit flex flex-col items-start box-shadow-custom overflow-x-hidden overflow-y-visible text-black py-2 px-4 rounded-md shadow wrap-break-word'>
                                             <ReactMarkdown>{msg.text}</ReactMarkdown>
                                         </div>
@@ -95,10 +95,10 @@ const ChatBox = ({
                                     </div>
                                 </div>
                             )
-                        } else {
+                        } else if (msg.senderId === 'AI' && msg.text !== "") {
                             return (
                                 <div key={index} className="p-2 flex items-end gap-2 justify-end">
-                                    <div className='h-full w-full max-w-2/3 flex flex-col items-end'>
+                                    <div className='h-full w-full max-w-2/3 flex flex-col items-end gap-1'>
                                         <div className='h-full max-w-full w-fit flex flex-col items-start text-left box-shadow-custom overflow-x-hidden overflow-y-visible text-black py-2 px-4 rounded-md shadow'>
                                             <ReactMarkdown>{msg.text}</ReactMarkdown>
                                         </div>
@@ -109,6 +109,8 @@ const ChatBox = ({
                                     </div>
                                 </div>
                             )
+                        } else {
+                            return null;
                         }
                     })}
                 </div>

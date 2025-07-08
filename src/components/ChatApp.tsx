@@ -4,12 +4,11 @@ import { v4 as uuidv4 } from 'uuid';
 import { MessageCircleMore } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import model from '@/lib/gemini';
-// import diseases from "@/data/diseases.json";
 import diagnosis_codes from "@/data/diagnosis_codes.json";
 import icd_codes from "@/data/icd_codes.json";
 import procedure_codes from "@/data/procedure_codes.json";
-
 interface Message {
+    id: string;
     time: string;
     text: string;
     senderId: string;
@@ -58,29 +57,53 @@ Bạn là một trợ lý ảo y khoa của **Bệnh viện Đa khoa Quốc tế
         if (!message.trim()) return;
 
         const userMsg: Message = {
+            id: uuidv4(),
             time: new Date().toLocaleTimeString(),
             text: message,
             senderId: userId,
         };
-
-        setMessages((prev) => [...prev, userMsg]);
+        setMessages(prev => [...prev, userMsg]);
         setMessage('');
 
-        const result = await model.generateContent(prePrompt + "\n" + diagnosis_codes + "\n" + icd_codes + "\n" + procedure_codes + "\n" + message);
-        setTimeout(() => {
+        const aiId = uuidv4();
+        const aiMsg: Message = {
+            id: aiId,
+            time: new Date().toLocaleTimeString(),
+            text: '',
+            senderId: 'AI',
+        };
+        setMessages(prev => [...prev, aiMsg]);
 
-            const aiMsg: Message = {
-                time: new Date().toLocaleTimeString(),
-                text: result.response.candidates?.[0].content.parts[0].text ?? "",
-                senderId: 'AI',
-            };
-            setMessages((prev) => [...prev, aiMsg]);
+        const result = await model.generateContentStream(
+            prePrompt +
+            "\n" +
+            diagnosis_codes +
+            "\n" +
+            icd_codes +
+            "\n" +
+            procedure_codes +
+            "\n" +
+            message
+        );
+        let accumulated = '';
 
-            if (!isShowMessage) {
-                setUnreadCount((prev) => prev + 1);
-            }
-        }, 1000);
+        for await (const chunk of result.stream) {
+            const part = chunk.candidates?.[0].content.parts[0].text ?? '';
+            accumulated += part;
+            setMessages(prev =>
+                prev.map(msg =>
+                    msg.id === aiId
+                        ? { ...msg, text: accumulated }
+                        : msg
+                )
+            );
+            await new Promise(resolve => setTimeout(resolve, 200));
+        }
+        if (!isShowMessage) {
+            setUnreadCount(prev => prev + 1);
+        }
     };
+
 
     return (
         <>
