@@ -2,7 +2,9 @@ import ChatApp from "./components/ChatApp"
 
 const App = () => {
   return (
-    <ChatApp />
+    <div className="bg-transparent size-fit">
+      <ChatApp />
+    </div>
   )
 }
 export default App

@@ -84,7 +84,7 @@ const ChatBox = ({
                         if (msg.senderId === userId) {
                             return (
                                 <div key={index} className="p-2 flex items-end gap-2 justify-start">
-                                    <div title='User' className='size-10  bg-black text-white rounded-full border flex items-center justify-center cursor-pointer'>
+                                    <div title='User' className='size-10 bg-black text-white rounded-full border flex items-center justify-center cursor-pointer'>
                                         <User />
                                     </div>
                                     <div className='h-full w-full max-w-2/3 flex flex-col items-start'>
