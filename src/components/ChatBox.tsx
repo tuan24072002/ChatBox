@@ -44,11 +44,11 @@ const ChatBox = ({
     return (
         <div style={{ pointerEvents: 'auto' }} className={cn(`fixed bottom-22 right-4 w-[400px] h-[500px] border border-black overflow-hidden rounded-lg transition-all duration-300 bg-white z-10`, isShowMessage ? 'translate-x-0' : 'translate-x-[416px]')}>
             <div className="size-full flex flex-col">
-                <div className="w-full h-20 flex items-center justify-between px-6">
-                    <div className="size-8 rounded-full border relative">
-                        <img src={Assets.Photo} alt="Avatar" className="size-full object-contain" />
+                <div className="w-full h-20 flex items-center justify-between px-2">
+                    <div className="size-12 overflow-hidden rounded-full border relative">
+                        <img src={Assets.LogoTMHSG} alt="Avatar" className="size-full object-contain p-1" />
                     </div>
-                    <p className="uppercase flex-1 text-left pl-2 font-bold">ChatBox system</p>
+                    <p className="flex-1 text-left pl-2 font-semibold text-lg">Trợ lý ảo</p>
                     <div className="w-24 h-12 flex items-center justify-between">
                         <Popover open={showPopover} onOpenChange={setShowPopover}>
                             <PopoverTrigger asChild>
@@ -59,8 +59,8 @@ const ChatBox = ({
                             <PopoverContent align='end' className='w-52 h-auto p-0'>
                                 <Button
                                     onClick={() => {
+                                        toggleChatbox();
                                         setIsShowMessage(false)
-                                        setShowPopover(false)
                                         setTimeout(() => {
                                             setMessages([])
                                         }, 200);
@@ -86,7 +86,7 @@ const ChatBox = ({
                         if (msg.senderId === userId && msg.text !== "") {
                             return (
                                 <div key={index} className="p-2 flex items-end gap-2 justify-start">
-                                    <div title='User' className='size-10 bg-black text-white rounded-full border flex items-center justify-center cursor-pointer'>
+                                    <div title='Người dùng' className='size-10 bg-blue-700 text-white rounded-full border flex items-center justify-center cursor-pointer'>
                                         <User />
                                     </div>
                                     <div className='h-full w-full max-w-2/3 flex flex-col items-start gap-1'>
@@ -106,7 +106,7 @@ const ChatBox = ({
                                         </div>
                                         <small className='text-xs font-semibold'>{msg.time}</small>
                                     </div>
-                                    <div title='Bot' className='size-10  bg-black text-white rounded-full border flex items-center justify-center cursor-pointer'>
+                                    <div title='Trợ lý ảo' className='size-10 bg-blue-700 text-white rounded-full border flex items-center justify-center cursor-pointer'>
                                         <Bot />
                                     </div>
                                 </div>
