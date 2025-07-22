@@ -9,7 +9,7 @@ import {
 import { Button } from './ui/button';
 import ReactMarkdown from 'react-markdown';
 import { Assets } from '@/assets';
-
+import { v4 as uuidv4 } from 'uuid';
 const ChatBox = ({
     isShowMessage,
     setIsShowMessage,
@@ -60,9 +60,15 @@ const ChatBox = ({
                                 <Button
                                     onClick={() => {
                                         toggleChatbox();
+                                        setShowPopover(false);
                                         setIsShowMessage(false)
                                         setTimeout(() => {
-                                            setMessages([])
+                                            setMessages([{
+                                                id: uuidv4(),
+                                                senderId: 'AI',
+                                                text: `Chào bạn, tôi là trợ lý ảo y khoa của **Bệnh viện Đa khoa Quốc tế Sài Gòn**, rất vui được hỗ trợ bạn!`,
+                                                time: new Date().toLocaleTimeString()
+                                            }])
                                         }, 200);
                                     }}
                                     className='w-full bg-transparent hover:bg-transparent border-none ring-0 text-red-500 font-semibold cursor-pointer'
