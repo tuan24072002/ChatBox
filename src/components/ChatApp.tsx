@@ -44,7 +44,7 @@ Bạn là một trợ lý ảo y khoa của **Bệnh viện Đa khoa Quốc tế
         setIsShowMessage((prev) => !prev);
         setUnreadCount(0);
         window.parent.postMessage(
-            { type: 'CHATBOX_TOGGLE', open: isShowMessage },
+            { type: 'CHATBOX_TOGGLE', open: !isShowMessage },
             '*'
         )
     }
