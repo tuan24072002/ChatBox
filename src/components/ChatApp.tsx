@@ -40,18 +40,10 @@ Bạn là một trợ lý ảo y khoa của **Bệnh viện Đa khoa Quốc tế
 6.  **Từ chối ngoài phạm vi:** Nếu câu hỏi không liên quan đến y khoa, hãy lịch sự từ chối trong 1-2 câu (ví dụ: "Tôi là trợ lý y khoa và chỉ có thể hỗ trợ các câu hỏi về sức khỏe. Tôi có thể giúp gì khác cho bạn không?").
     `;
 
-    useEffect(() => {
-        let storedUserId = sessionStorage.getItem('userId');
-        if (!storedUserId) {
-            storedUserId = uuidv4();
-            sessionStorage.setItem('userId', storedUserId);
-        }
-        setUserId(storedUserId);
-    }, []);
-
-    useEffect(() => {
-        localStorage.setItem('chatMessages', JSON.stringify(messages));
-    }, [messages]);
+    const toggleChatbox = () => {
+        setIsShowMessage((prev) => !prev);
+        setUnreadCount(0);
+    }
 
     const sendMessage = async () => {
         if (!message.trim()) return;
@@ -104,43 +96,58 @@ Bạn là một trợ lý ảo y khoa của **Bệnh viện Đa khoa Quốc tế
         }
     };
 
+    useEffect(() => {
+        let storedUserId = sessionStorage.getItem('userId');
+        if (!storedUserId) {
+            storedUserId = uuidv4();
+            sessionStorage.setItem('userId', storedUserId);
+        }
+        setUserId(storedUserId);
+    }, []);
 
+    useEffect(() => {
+        localStorage.setItem('chatMessages', JSON.stringify(messages));
+    }, [messages]);
     return (
         <>
             <div
-                onClick={() => {
-                    setIsShowMessage((prev) => !prev);
-                    setUnreadCount(0);
-                }}
                 className={cn(
-                    `fixed bottom-4 right-4 transition-all duration-500 bg-white/80 cursor-pointer size-16 rounded-full overflow-hidden border border-black z-10`
+                    'fixed bottom-4 right-4 z-10 transition-all duration-300 transform origin-bottom-right',
+                    !isShowMessage
+                        ? 'scale-0 pointer-events-none'
+                        : 'scale-100 pointer-events-auto'
                 )}
+                style={{ width: 416, height: 588 }}
+            >
+                <ChatBox
+                    isShowMessage={isShowMessage}
+                    setIsShowMessage={setIsShowMessage}
+                    messages={messages}
+                    setMessages={setMessages}
+                    sendMessage={sendMessage}
+                    message={message}
+                    setMessage={setMessage}
+                    userId={userId}
+                />
+            </div>
+
+            <div
+                onClick={toggleChatbox}
+                className="fixed bottom-4 right-4 z-20 bg-white/80 cursor-pointer size-16 rounded-full overflow-hidden border border-black flex items-center justify-center"
                 style={{ pointerEvents: 'auto' }}
             >
-                <div className="size-full flex items-center justify-center relative group">
-                    <MessageCircleMore
-                        className={cn(
-                            'size-9 group-hover:rotate-60 transition-all duration-300',
-                            isShowMessage && '-rotate-180'
-                        )}
-                    />
-                    {unreadCount > 0 && (
-                        <div className="size-4 bg-red-500 rounded-full absolute right-2 top-2 z-10 flex items-center justify-center text-white text-xs animate-bounce">
-                            {unreadCount}
-                        </div>
+                <MessageCircleMore
+                    className={cn(
+                        'size-9 transition-all duration-300',
+                        isShowMessage ? '-rotate-180' : 'group-hover:rotate-60'
                     )}
-                </div>
+                />
+                {unreadCount > 0 && (
+                    <div className="size-4 bg-red-500 rounded-full absolute right-2 top-2 flex items-center justify-center text-white text-xs animate-bounce">
+                        {unreadCount}
+                    </div>
+                )}
             </div>
-            <ChatBox
-                isShowMessage={isShowMessage}
-                setIsShowMessage={setIsShowMessage}
-                messages={messages}
-                setMessages={setMessages}
-                sendMessage={sendMessage}
-                message={message}
-                setMessage={setMessage}
-                userId={userId}
-            />
         </>
     );
 };
