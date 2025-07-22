@@ -43,6 +43,10 @@ Bạn là một trợ lý ảo y khoa của **Bệnh viện Đa khoa Quốc tế
     const toggleChatbox = () => {
         setIsShowMessage((prev) => !prev);
         setUnreadCount(0);
+        window.parent.postMessage(
+            { type: 'CHATBOX_TOGGLE', open: isShowMessage },
+            '*'
+        )
     }
 
     const sendMessage = async () => {
@@ -111,43 +115,36 @@ Bạn là một trợ lý ảo y khoa của **Bệnh viện Đa khoa Quốc tế
     return (
         <>
             <div
-                className={cn(
-                    'fixed bottom-4 right-4 z-10 transition-all duration-300 transform origin-bottom-right',
-                    !isShowMessage
-                        ? 'scale-0 pointer-events-none'
-                        : 'scale-100 pointer-events-auto'
-                )}
-                style={{ width: 416, height: 588 }}
-            >
-                <ChatBox
-                    isShowMessage={isShowMessage}
-                    setIsShowMessage={setIsShowMessage}
-                    messages={messages}
-                    setMessages={setMessages}
-                    sendMessage={sendMessage}
-                    message={message}
-                    setMessage={setMessage}
-                    userId={userId}
-                />
-            </div>
-
-            <div
                 onClick={toggleChatbox}
-                className="fixed bottom-4 right-4 z-20 bg-white/80 cursor-pointer size-16 rounded-full overflow-hidden border border-black flex items-center justify-center"
+                className={cn(
+                    `fixed bottom-4 right-4 transition-all duration-500 bg-white/80 cursor-pointer size-16 rounded-full overflow-hidden border border-black z-10`
+                )}
                 style={{ pointerEvents: 'auto' }}
             >
-                <MessageCircleMore
-                    className={cn(
-                        'size-9 transition-all duration-300',
-                        isShowMessage ? '-rotate-180' : 'group-hover:rotate-60'
+                <div className="size-full flex items-center justify-center relative group">
+                    <MessageCircleMore
+                        className={cn(
+                            'size-9 group-hover:rotate-60 transition-all duration-300',
+                            isShowMessage && '-rotate-180'
+                        )}
+                    />
+                    {unreadCount > 0 && (
+                        <div className="size-4 bg-red-500 rounded-full absolute right-2 top-2 z-10 flex items-center justify-center text-white text-xs animate-bounce">
+                            {unreadCount}
+                        </div>
                     )}
-                />
-                {unreadCount > 0 && (
-                    <div className="size-4 bg-red-500 rounded-full absolute right-2 top-2 flex items-center justify-center text-white text-xs animate-bounce">
-                        {unreadCount}
-                    </div>
-                )}
+                </div>
             </div>
+            <ChatBox
+                isShowMessage={isShowMessage}
+                setIsShowMessage={setIsShowMessage}
+                messages={messages}
+                setMessages={setMessages}
+                sendMessage={sendMessage}
+                message={message}
+                setMessage={setMessage}
+                userId={userId}
+            />
         </>
     );
 };
