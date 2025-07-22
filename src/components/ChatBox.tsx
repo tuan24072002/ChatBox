@@ -18,7 +18,8 @@ const ChatBox = ({
     sendMessage,
     setMessage,
     message,
-    userId
+    userId,
+    toggleChatbox
 }: {
     isShowMessage: boolean
     setIsShowMessage: (e: boolean) => void
@@ -28,6 +29,7 @@ const ChatBox = ({
     setMessage: (e: string) => void
     message: string
     userId: string
+    toggleChatbox: VoidFunction
 }) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const [showPopover, setShowPopover] = useState(false);
@@ -69,7 +71,7 @@ const ChatBox = ({
                                 </Button>
                             </PopoverContent>
                         </Popover>
-                        <div className="size-10 rounded-full bg-slate-200 cursor-pointer hover:bg-slate-300 flex items-center justify-center" onClick={() => setIsShowMessage(false)}>
+                        <div className="size-10 rounded-full bg-slate-200 cursor-pointer hover:bg-slate-300 flex items-center justify-center" onClick={toggleChatbox}>
                             <ChevronDown className="text-black/50" />
                         </div>
                     </div>

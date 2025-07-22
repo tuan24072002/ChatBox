@@ -144,6 +144,7 @@ Bạn là một trợ lý ảo y khoa của **Bệnh viện Đa khoa Quốc tế
                 message={message}
                 setMessage={setMessage}
                 userId={userId}
+                toggleChatbox={toggleChatbox}
             />
         </>
     );
