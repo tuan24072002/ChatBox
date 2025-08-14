@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ChatBox from "./ChatBox";
 import { v4 as uuidv4 } from "uuid";
-import { MessageCircleMore } from "lucide-react";
+import { Headset } from "lucide-react";
 import { cn } from "@/lib/utils";
 import model from "@/lib/gemini";
 import diagnosis_codes from "@/data/diagnosis_codes.json";
@@ -34,7 +34,6 @@ const ChatApp = () => {
     return GREETING;
   });
   const [userId, setUserId] = useState<string>("");
-  const [unreadCount, setUnreadCount] = useState(0);
 
   //     const prePrompt = `
   // Bạn là một trợ lý ảo y khoa của **Bệnh viện Đa khoa Quốc tế Sài Gòn**. Nhiệm vụ của bạn là tư vấn sơ bộ về các vấn đề sức khỏe dựa trên cơ sở dữ liệu bệnh lý (định dạng JSON) được cung cấp.
@@ -91,7 +90,6 @@ ${procedure_codes}
 
   const toggleChatbox = () => {
     setIsShowMessage((prev) => !prev);
-    setUnreadCount(0);
     window.parent.postMessage(
       { type: "CHATBOX_TOGGLE", open: !isShowMessage },
       "*"
@@ -136,9 +134,6 @@ ${procedure_codes}
         await new Promise((resolve) => setTimeout(resolve, 200));
       }
     }, 1500);
-    if (!isShowMessage) {
-      setUnreadCount((prev) => prev + 1);
-    }
   };
 
   useEffect(() => {
@@ -157,25 +152,38 @@ ${procedure_codes}
     <>
       <div
         onClick={toggleChatbox}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            toggleChatbox();
+          }
+        }}
+        aria-expanded={isShowMessage}
+        aria-label={isShowMessage ? "Đóng chat" : "Mở chat"}
+        title={isShowMessage ? "Đóng hỗ trợ" : "Mở hỗ trợ"}
         className={cn(
-          `fixed bottom-4 right-4 transition-all duration-500 bg-white/80 cursor-pointer size-16 rounded-full overflow-hidden border border-black z-10`
+          `fixed bottom-4 right-4 transition-all duration-300 bg-white/80 cursor-pointer overflow-hidden border border-black/10 z-10 shadow-lg backdrop-blur-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-300`
         )}
         style={{ pointerEvents: "auto" }}
       >
-        <div className="size-full flex items-center justify-center relative group">
-          <MessageCircleMore
+        <div className="size-full flex items-center justify-center relative group px-3.5 py-2 border border-transparent hover:border-blue-600 transition-all duration-300 group">
+          {/* <MessageCircleMore
             className={cn(
-              "size-9 group-hover:rotate-60 transition-all duration-300",
-              isShowMessage && "-rotate-180"
+              "size-9 transition-transform duration-300 transform-gpu",
+              "group-hover:rotate-6",
+              isShowMessage ? "-rotate-180" : "rotate-0"
             )}
-          />
-          {unreadCount > 0 && (
-            <div className="size-4 bg-red-500 rounded-full absolute right-2 top-2 z-10 flex items-center justify-center text-white text-xs animate-bounce">
-              {unreadCount}
-            </div>
-          )}
+            aria-hidden="true"
+          /> */}
+          <p className="select-none flex items-center gap-2 group-hover:text-blue-700 font-semibold transition-all duration-300">
+            <span>Chat với Trợ lý ảo</span>
+            <Headset className="text-blue-700" />
+          </p>
         </div>
       </div>
+
       <ChatBox
         isShowMessage={isShowMessage}
         setIsShowMessage={setIsShowMessage}
