@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import ChatBox from "./ChatBox";
 import { v4 as uuidv4 } from "uuid";
-import { Headset } from "lucide-react";
 import { cn } from "@/lib/utils";
 import model from "@/lib/gemini";
 import diagnosis_codes from "@/data/diagnosis_codes.json";
 import icd_codes from "@/data/icd_codes.json";
 import procedure_codes from "@/data/procedure_codes.json";
+import { Assets } from "@/assets";
 interface Message {
   id: string;
   time: string;
@@ -161,14 +161,14 @@ ${procedure_codes}
           }
         }}
         aria-expanded={isShowMessage}
-        aria-label={isShowMessage ? "Đóng chat" : "Mở chat"}
-        title={isShowMessage ? "Đóng hỗ trợ" : "Mở hỗ trợ"}
+        aria-label={isShowMessage ? "Đóng" : "Mở"}
+        title={isShowMessage ? "Đóng" : "Trợ lý ảo"}
         className={cn(
-          `fixed bottom-4 right-4 transition-all duration-300 bg-white/80 cursor-pointer overflow-hidden border border-black/10 z-10 shadow-lg backdrop-blur-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-300`
+          `fixed bottom-4 right-4 transition-all duration-300 bg-white/80 cursor-pointer size-16 rounded-full overflow-hidden border z-10 shadow-lg  backdrop-blur-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-300`
         )}
         style={{ pointerEvents: "auto" }}
       >
-        <div className="size-full flex items-center justify-center relative group px-3.5 py-2 border border-transparent hover:border-blue-600 transition-all duration-300 group">
+        <div className="size-full flex items-center justify-center relative group">
           {/* <MessageCircleMore
             className={cn(
               "size-9 transition-transform duration-300 transform-gpu",
@@ -177,10 +177,18 @@ ${procedure_codes}
             )}
             aria-hidden="true"
           /> */}
-          <p className="select-none flex items-center gap-2 group-hover:text-blue-700 font-semibold transition-all duration-300">
-            <span>Chat với Trợ lý ảo</span>
-            <Headset className="text-blue-700" />
-          </p>
+          <img
+            src={Assets.Logo}
+            alt="Logo ChatBox"
+            className="size-full object-contain p-1"
+          />
+
+          <span
+            className="hidden md:inline-block absolute -left-40 top-1/2 -translate-y-1/2 ml-2 px-3 py-1 rounded-full bg-gray-900 text-white text-xs shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none select-none"
+            aria-hidden="true"
+          >
+            {isShowMessage ? "Đóng" : "Trợ lý ảo"}
+          </span>
         </div>
       </div>
 
