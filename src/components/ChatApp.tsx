@@ -164,7 +164,8 @@ ${procedure_codes}
         aria-label={isShowMessage ? "Đóng" : "Mở"}
         title={isShowMessage ? "Đóng" : "Trợ lý ảo"}
         className={cn(
-          `fixed bottom-4 right-4 transition-all duration-300 bg-white/80 cursor-pointer size-16 rounded-full overflow-hidden hover:border hover:shadow-lg z-10 backdrop-blur-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-300`
+          `fixed bottom-4 right-4 transition-all duration-300 bg-white/80 cursor-pointer size-16 rounded-full overflow-hidden z-10 backdrop-blur-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-300`,
+          isShowMessage ? "border shadow-lg" : "hover:border hover:shadow-lg"
         )}
         style={{ pointerEvents: "auto" }}
       >
